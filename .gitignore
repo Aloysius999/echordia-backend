@@ -23,6 +23,7 @@ bin/
 Bin/
 obj/
 Obj/
+logs/
 
 #MongoDB files
 *.dylib
