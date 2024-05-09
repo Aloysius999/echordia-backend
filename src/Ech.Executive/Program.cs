@@ -1,7 +1,10 @@
 using Ech.Abstractions.Database;
+using Microsoft.Extensions.Configuration;
 using Ech.Executive.Temp;
+using Microsoft.Extensions.Configuration;
 using NLog;
 using NLog.Web;
+using Ech.Executive;
 
 var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
 
@@ -20,7 +23,8 @@ try
 
     builder.Services.AddSingleton<IRepositoryBase, TempRepository>(s =>
     {
-        //var uri = s.GetRequiredService<IConfiguration>()["Database:MongoUri"];
+        var connectionString = s.GetRequiredService<IConfiguration>()["DBConfiguration:ConnectionString"];
+        logger.Debug("connectionString", connectionString);
         //Ech.Configuration.Configuration.Repository = new MongoDBRepository(uri, Ech.Configuration.Configuration.Logger);
         //return new MongoDBRepository(uri, Ech.Configuration.Configuration.Logger);
         return new TempRepository();

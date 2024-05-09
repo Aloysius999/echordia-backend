@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ech.WebApi", "src\Ech.WebAp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ech.Abstractions", "src\Ech.Abstractions\Ech.Abstractions.csproj", "{DE8A3D92-2478-4F19-A6A4-BC2D8CD5F69C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ech.Database", "src\Ech.Database\Ech.Database.csproj", "{C1D8234B-EDAE-4941-A38A-A373C6244F22}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{DE8A3D92-2478-4F19-A6A4-BC2D8CD5F69C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE8A3D92-2478-4F19-A6A4-BC2D8CD5F69C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE8A3D92-2478-4F19-A6A4-BC2D8CD5F69C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1D8234B-EDAE-4941-A38A-A373C6244F22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1D8234B-EDAE-4941-A38A-A373C6244F22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1D8234B-EDAE-4941-A38A-A373C6244F22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1D8234B-EDAE-4941-A38A-A373C6244F22}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -49,6 +55,7 @@ Global
 		{95A6EF4F-82AC-4310-88C1-1AE46D3C4860} = {ECF6CFF1-5067-43B2-83B2-64872E101B90}
 		{9DC394E7-F5C4-44B4-BB69-E9A5785FE40A} = {570DCF63-978F-42C1-9F34-B12BEDEC3027}
 		{DE8A3D92-2478-4F19-A6A4-BC2D8CD5F69C} = {570DCF63-978F-42C1-9F34-B12BEDEC3027}
+		{C1D8234B-EDAE-4941-A38A-A373C6244F22} = {570DCF63-978F-42C1-9F34-B12BEDEC3027}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {37D99532-D745-46E3-944D-61B3F2DC08DE}
