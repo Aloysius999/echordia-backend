@@ -1,3 +1,5 @@
+using Ech.Abstractions.Database;
+using Ech.Executive.Temp;
 using NLog;
 using NLog.Web;
 
@@ -15,6 +17,14 @@ try
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
+
+    builder.Services.AddSingleton<IRepositoryBase, TempRepository>(s =>
+    {
+        //var uri = s.GetRequiredService<IConfiguration>()["Database:MongoUri"];
+        //Ech.Configuration.Configuration.Repository = new MongoDBRepository(uri, Ech.Configuration.Configuration.Logger);
+        //return new MongoDBRepository(uri, Ech.Configuration.Configuration.Logger);
+        return new TempRepository();
+    });
 
     // NLog: setup NLog for dependency injection
     builder.Logging.ClearProviders();
