@@ -16,9 +16,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="8.0.4" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="7.5.1" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.20.1" />
+    <PackageReference Include="MySql.EntityFrameworkCore" Version="8.0.2" />
     <PackageReference Include="NLog.Web.AspNetCore" Version="5.3.11" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.5.1" />
     <ProjectReference Include="..\Ech.Executive.Models\Ech.Executive.Models.csproj" />
     <ProjectReference Include="..\Ech.WebApi\Ech.WebApi.csproj" />
 	<Content Update="nlog.config" CopyToOutputDirectory="PreserveNewest" />

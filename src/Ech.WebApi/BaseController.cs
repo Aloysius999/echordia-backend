@@ -1,24 +1,18 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Ech.WebApi.API;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System.Net;
-using Ech.WebApi.API;
-using Ech.Abstractions.Database;
 
 namespace Ech.WebApi
 {
     public class BaseController<TController> : ControllerBase
     {
-        private readonly IRepositoryBase _repository;
-
-        public BaseController(IConfiguration config, ILogger<TController> logger, IRepositoryBase repository)
+        public BaseController(IConfiguration config, ILogger<TController> logger)
         {
             this.Config = config;
             this.Logger = logger;
-            this.Repository = repository;
         }
-
-        protected IRepositoryBase Repository { get; private set; }
 
         protected IConfiguration Config { get; private set; }
 
