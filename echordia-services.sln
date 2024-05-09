@@ -7,7 +7,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{570DCF
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{FF700026-1983-4B17-9EBF-BEF7B18C75C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ech.Executive", "src\Ech.Executive\Ech.Executive.csproj", "{106AEFB5-C928-449A-9BD4-96A943DCED98}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ech.Executive", "src\Ech.Executive\Ech.Executive.csproj", "{106AEFB5-C928-449A-9BD4-96A943DCED98}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ech.Executive", "Ech.Executive", "{ECF6CFF1-5067-43B2-83B2-64872E101B90}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,7 +26,8 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{106AEFB5-C928-449A-9BD4-96A943DCED98} = {FF700026-1983-4B17-9EBF-BEF7B18C75C9}
+		{106AEFB5-C928-449A-9BD4-96A943DCED98} = {ECF6CFF1-5067-43B2-83B2-64872E101B90}
+		{ECF6CFF1-5067-43B2-83B2-64872E101B90} = {FF700026-1983-4B17-9EBF-BEF7B18C75C9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {37D99532-D745-46E3-944D-61B3F2DC08DE}
