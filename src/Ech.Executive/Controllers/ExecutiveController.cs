@@ -1,4 +1,6 @@
-﻿using Ech.Executive.Models.API;
+﻿using Ech.Executive.Authentication.Services;
+using Ech.Executive.Models.API;
+using Ech.Executive.Services;
 using Ech.WebApi;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,9 +10,12 @@ namespace Ech.Executive.Controllers
     [Route("api/v1/exec")]
     public class ExecutiveController : BaseController<ExecutiveController>
     {
-        public ExecutiveController(IConfiguration config, ILogger<ExecutiveController> logger)
+        private IExecService _execService;
+
+        public ExecutiveController(IConfiguration config, ILogger<ExecutiveController> logger, IExecService execService)
             :base (config, logger)
         {
+            _execService = execService;
         }
 
         [HttpPost(Name = "PostQuery")]

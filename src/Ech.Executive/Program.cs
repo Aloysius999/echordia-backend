@@ -1,6 +1,7 @@
 ﻿using Ech.Executive.Authentication.Middleware;
 using Ech.Executive.Authentication.Services;
 using Ech.Executive.Database;
+using Ech.Executive.Services;
 using Ech.Executive.Settings;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -71,6 +72,7 @@ try
 
     builder.Services.AddScoped<IAuthService, AuthService>();
     builder.Services.AddScoped<IUserService, UserService>();
+    builder.Services.AddScoped<IExecService, ExecService>();
 
 
     // NLog: setup NLog for dependency injection
