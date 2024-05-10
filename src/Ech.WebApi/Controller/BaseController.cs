@@ -9,16 +9,11 @@ namespace Ech.WebApi.Controller
 {
     public class BaseController<TController> : ControllerBase
     {
-        private readonly IRepositoryBase _repository;
-
-        public BaseController(IConfiguration config, ILogger<TController> logger, IRepositoryBase repository)
+        public BaseController(IConfiguration config, ILogger<TController> logger)
         {
             Config = config;
             Logger = logger;
-            Repository = repository;
         }
-
-        protected IRepositoryBase Repository { get; private set; }
 
         protected IConfiguration Config { get; private set; }
 

@@ -9,6 +9,7 @@ using Ech.Executive.Database;
 using Ech.Executive.Settings;
 using Ech.Common.Crypto;
 using Microsoft.AspNetCore.Identity;
+using Ech.Abstractions.Exceptions;
 
 namespace Ech.Executive.Authentication.Services
 {
@@ -28,12 +29,16 @@ namespace Ech.Executive.Authentication.Services
             var user = await _db.Users.SingleOrDefaultAsync(x => x.email == model.Email);
 
             // return null if user not found
-            if (user == null) return null;
-            if (user.roleId == User.Role.User) return null;
+            if (user == null) 
+                throw new NotFoundException("User not found");
+
+            if (user.roleId == User.Role.User)
+                throw new ForbiddenException("User does not have sufficient privileges");
 
             // verify password hash
             var res = Hash.Verify(model.Password, user.hashedPassword);
-            if (res == false) return null;
+            if (res == false)
+                throw new ValidationErrorException("Password is incorrect");
 
             // authentication successful so generate jwt token
             var token = await generateJwtToken(user);
