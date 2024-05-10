@@ -8,6 +8,6 @@ namespace Ech.Executive.Authentication.Model
         public required string Email { get; set; }
 
         [DefaultValue("System")]
-        public required string HashedPassword { get; set; }
+        public required string Password { get; set; }
     }
 }

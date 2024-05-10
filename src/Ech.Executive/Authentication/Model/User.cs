@@ -1,9 +1,20 @@
-﻿using System.Text.Json.Serialization;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Ech.Executive.Authentication.Model
 {
+
     public class User
     {
+        public enum Role
+        {
+            User,
+            Admin,
+            SuperUser,
+            System,
+        }
+
         public int id { get; set; }
         public string? forename { get; set; }
         public string? surname { get; set; }
@@ -14,5 +25,13 @@ namespace Ech.Executive.Authentication.Model
         [JsonIgnore]
         public string? hashedPassword { get; set; }
         public bool isActive { get; set; }
+        //public int? role { get; set; }
+        [NotMapped]
+        public Role roleId { get; set; }
+        public string? role
+        {
+            get => roleId.ToString();
+            set => roleId = (Role)Enum.Parse(typeof(Role), value);
+        }
     }
 }

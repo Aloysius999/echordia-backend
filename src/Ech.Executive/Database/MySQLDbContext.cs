@@ -11,10 +11,17 @@ namespace Ech.Executive.Database
         }
 
         public DbSet<User> Users { get; set; }
+        //public DbSet<Role> Roles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().ToTable("user");
+
+            modelBuilder.Entity<User>()
+                .Property(e => e.role)
+                .HasConversion<string>();
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

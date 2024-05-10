@@ -7,6 +7,8 @@ using System.Security.Claims;
 using System.Text;
 using Ech.Executive.Database;
 using Ech.Executive.Settings;
+using Ech.Common.Crypto;
+using Microsoft.AspNetCore.Identity;
 
 namespace Ech.Executive.Authentication.Services
 {
@@ -23,10 +25,15 @@ namespace Ech.Executive.Authentication.Services
 
         public async Task<AuthenticateResponse?> Authenticate(AuthenticateRequest model)
         {
-            var user = await _db.Users.SingleOrDefaultAsync(x => x.email == model.Email && x.hashedPassword == model.HashedPassword);
+            var user = await _db.Users.SingleOrDefaultAsync(x => x.email == model.Email);
 
             // return null if user not found
             if (user == null) return null;
+            if (user.roleId == User.Role.User) return null;
+
+            // verify password hash
+            var res = Hash.Verify(model.Password, user.hashedPassword);
+            if (res == false) return null;
 
             // authentication successful so generate jwt token
             var token = await generateJwtToken(user);
