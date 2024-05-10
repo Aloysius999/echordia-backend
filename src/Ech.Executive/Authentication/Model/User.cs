@@ -25,7 +25,7 @@ namespace Ech.Executive.Authentication.Model
         [JsonIgnore]
         public string? hashedPassword { get; set; }
         public bool isActive { get; set; }
-        //public int? role { get; set; }
+
         [NotMapped]
         public Role roleId { get; set; }
         public string? role

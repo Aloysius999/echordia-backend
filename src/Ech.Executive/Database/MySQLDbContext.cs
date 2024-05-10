@@ -1,6 +1,5 @@
 ﻿using Ech.Executive.Authentication.Model;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Proxies;
 
 namespace Ech.Executive.Database
 {
@@ -11,7 +10,6 @@ namespace Ech.Executive.Database
         }
 
         public DbSet<User> Users { get; set; }
-        //public DbSet<Role> Roles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
