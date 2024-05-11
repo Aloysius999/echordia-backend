@@ -4,33 +4,27 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>0a6a1a02-7835-4637-bcf4-50c8a77c418e</UserSecretsId>
+    <UserSecretsId>0b1fd095-5410-4717-b3a9-c9750661a6a7</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..</DockerfileContext>
-	  <!-- Set `docker run` arguments to mount a volume -->
-	  <DockerfileRunArguments>-v $(MSBuildProjectDirectory)/logs:/logs:rw</DockerfileRunArguments> 
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Startup.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.4" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="8.0.4" />
-    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="7.5.1" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.20.1" />
     <PackageReference Include="MySql.EntityFrameworkCore" Version="8.0.2" />
     <PackageReference Include="NLog.Web.AspNetCore" Version="5.3.11" />
     <PackageReference Include="RabbitMQ.Client.Core.DependencyInjection" Version="5.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
-    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.5.1" />
-    <ProjectReference Include="..\Ech.Common\Ech.Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Ech.Config\Ech.Config.csproj" />
-    <ProjectReference Include="..\Ech.Executive.Models\Ech.Executive.Models.csproj" />
-    <ProjectReference Include="..\Ech.WebApi\Ech.WebApi.csproj" />
-	<Content Update="nlog.config" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Messaging\" />
+    <Folder Include="Services\" />
   </ItemGroup>
 
 </Project>

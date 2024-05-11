@@ -1,4 +1,5 @@
-﻿using Ech.Executive.Authentication.Middleware;
+﻿using Ech.Config.Settings;
+using Ech.Executive.Authentication.Middleware;
 using Ech.Executive.Authentication.Services;
 using Ech.Executive.Database;
 using Ech.Executive.Services;
@@ -7,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using NLog;
 using NLog.Web;
+using RabbitMQ.Client.Core.DependencyInjection;
 
 var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
 
@@ -73,6 +75,14 @@ try
     builder.Services.AddScoped<IAuthService, AuthService>();
     builder.Services.AddScoped<IUserService, UserService>();
     builder.Services.AddScoped<IExecService, ExecService>();
+
+
+    // configure RabbitMQ
+    var rabbitMqSection = builder.Configuration.GetSection("RabbitMq");
+    var exchangeSection = builder.Configuration.GetSection("RabbitMqExchange");
+
+    builder.Services.AddRabbitMqProducer(rabbitMqSection)
+        .AddProductionExchange("exchange.name", exchangeSection);
 
 
     // NLog: setup NLog for dependency injection

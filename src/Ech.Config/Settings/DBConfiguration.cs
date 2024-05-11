@@ -1,4 +1,4 @@
-﻿namespace Ech.Executive.Settings
+﻿namespace Ech.Config.Settings
 {
     public class DBConfiguration
     {
