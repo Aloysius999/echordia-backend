@@ -10,26 +10,26 @@ using RabbitMQ.Client.Core.DependencyInjection.Configuration;
 namespace Ech.Executive.Controllers
 {
     [ApiController]
-    [Route("api/v1/exec")]
-    public class ExecutiveController : BaseController<ExecutiveController>
+    [Route("api/v1/test")]
+    public class TestController : BaseController<TestController>
     {
-        private readonly IExecService _execService;
+        private readonly ITestService _testService;
         private readonly IProducingService _queueService;
 
-        public ExecutiveController(IConfiguration config, ILogger<ExecutiveController> logger, IExecService execService, IProducingService queueuService)
+        public TestController(IConfiguration config, ILogger<TestController> logger, ITestService testService, IProducingService queueuService)
             :base (config, logger)
         {
-            _execService = execService;
+            _testService = testService;
             _queueService = queueuService;
         }
 
-        [HttpPost(Name = "PostQuery")]
+        [HttpPost(Name = "PostTestQuery")]
         public async Task<ActionResult<ApiQueryResponseModel<bool>>> Post([FromBody] ApiRequestModel model)
         {
             await _queueService.SendAsync(
                 @object: model,
                 exchangeName: "ech.exchange",
-                routingKey: "ech.item.sale.monitor");
+                routingKey: "ech.test.service");
 
             return Ok(true);
         }

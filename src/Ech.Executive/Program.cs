@@ -75,6 +75,7 @@ try
     builder.Services.AddScoped<IAuthService, AuthService>();
     builder.Services.AddScoped<IUserService, UserService>();
     builder.Services.AddScoped<IExecService, ExecService>();
+    builder.Services.AddScoped<ITestService, TestService>();
 
 
     // configure RabbitMQ
@@ -82,7 +83,7 @@ try
     var exchangeSection = builder.Configuration.GetSection("RabbitMqExchange");
 
     builder.Services.AddRabbitMqProducer(rabbitMqSection)
-        .AddProductionExchange("exchange.name", exchangeSection);
+        .AddProductionExchange("ech.exchange", exchangeSection);
 
 
     // NLog: setup NLog for dependency injection

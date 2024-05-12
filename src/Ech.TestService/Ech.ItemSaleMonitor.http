@@ -1,0 +1,6 @@
+@Ech.ItemSaleMonitor_HostAddress = http://localhost:5236
+
+GET {{Ech.ItemSaleMonitor_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

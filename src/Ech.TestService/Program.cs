@@ -1,6 +1,6 @@
 using Ech.Config.Settings;
-using Ech.ItemSaleMonitor.Database;
-using Ech.ItemSaleMonitor.Messaging;
+using Ech.TestService.Database;
+using Ech.TestService.Messaging;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using NLog;
@@ -45,7 +45,7 @@ try
     builder.Services
         .AddRabbitMqServices(rabbitMqSection)
         .AddConsumptionExchange("ech.exchange", exchangeSection)
-        .AddMessageHandlerSingleton<CustomMessageHandler>("ech.item.sale.monitor");
+        .AddMessageHandlerSingleton<CustomMessageHandler>("ech.test.service");
 
 
     // NLog: setup NLog for dependency injection
@@ -78,7 +78,7 @@ catch (Exception exception)
 }
 finally
 {
-    logger.Info("Ech.ItemSaleMonitor terminated");
+    logger.Info("Ech.TestService terminated");
 
     // Ensure to flush and stop internal timers/threads before application-exit (Avoid segmentation fault on Linux)
     NLog.LogManager.Shutdown();
