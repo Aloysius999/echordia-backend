@@ -29,6 +29,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ecn.ItemSaleMonitor", "Ecn.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ech.ItemSaleMonitor", "src\Ech.ItemSaleMonitor\Ech.ItemSaleMonitor.csproj", "{6E19FEBF-74E9-4D7F-8DE1-37896F1FE821}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ech.Threading", "src\Ech.Threading\Ech.Threading.csproj", "{5220D097-45C6-4EF7-B38E-65CE253AC9E2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +69,10 @@ Global
 		{6E19FEBF-74E9-4D7F-8DE1-37896F1FE821}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E19FEBF-74E9-4D7F-8DE1-37896F1FE821}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E19FEBF-74E9-4D7F-8DE1-37896F1FE821}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5220D097-45C6-4EF7-B38E-65CE253AC9E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5220D097-45C6-4EF7-B38E-65CE253AC9E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5220D097-45C6-4EF7-B38E-65CE253AC9E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5220D097-45C6-4EF7-B38E-65CE253AC9E2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -82,6 +88,7 @@ Global
 		{CA53A9DE-10FE-4137-AC38-41FC6748CF3C} = {570DCF63-978F-42C1-9F34-B12BEDEC3027}
 		{9517076D-314B-49A2-A1B5-FD4895B0FF0B} = {FF700026-1983-4B17-9EBF-BEF7B18C75C9}
 		{6E19FEBF-74E9-4D7F-8DE1-37896F1FE821} = {9517076D-314B-49A2-A1B5-FD4895B0FF0B}
+		{5220D097-45C6-4EF7-B38E-65CE253AC9E2} = {570DCF63-978F-42C1-9F34-B12BEDEC3027}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {37D99532-D745-46E3-944D-61B3F2DC08DE}
