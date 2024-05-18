@@ -1,8 +1,6 @@
-﻿using Ech.Executive.Database;
-using Ech.Executive.Authentication.Model;
-using Microsoft.Extensions.Options;
+﻿using Ech.Executive.Authentication.Model;
+using Ech.Executive.Schema;
 using Newtonsoft.Json;
-using System.Configuration;
 
 namespace Ech.Executive.Authentication.Services
 {

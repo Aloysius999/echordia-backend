@@ -1,8 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
-namespace Ech.Executive.Authentication.Model
+namespace Ech.Executive.Schema
 {
 
     public class User

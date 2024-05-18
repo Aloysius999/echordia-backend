@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc.Filters;
+﻿using Ech.Executive.Schema;
 using Microsoft.AspNetCore.Mvc;
-using Ech.Executive.Authentication.Model;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace Ech.Executive.Authentication.Helpers
 {

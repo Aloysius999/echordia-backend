@@ -41,11 +41,13 @@ try
     // configure RabbitMQ
     var rabbitMqSection = builder.Configuration.GetSection("RabbitMq");
     var exchangeSection = builder.Configuration.GetSection("RabbitMqExchange");
+    var myRabbitMqSection = builder.Configuration.GetSection("MyRabbitMq");
+    var routeKey = myRabbitMqSection.GetValue<string>("RoutingKeyReceive");
 
     builder.Services
         .AddRabbitMqServices(rabbitMqSection)
         .AddConsumptionExchange("ech.exchange", exchangeSection)
-        .AddMessageHandlerSingleton<CustomMessageHandler>("ech.item.sale.monitor");
+        .AddMessageHandlerSingleton<CustomMessageHandler>(routeKey);
 
 
     // NLog: setup NLog for dependency injection

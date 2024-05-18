@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ech.Executive.Models.Schema
+namespace Ech.Executive.Models.API
 {
-    public enum QueryType {
+    public enum QueryType
+    {
         ListingItem = 0,
     }
 }
