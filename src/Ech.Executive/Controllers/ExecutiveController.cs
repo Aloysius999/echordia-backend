@@ -1,14 +1,11 @@
-﻿using Ech.Executive.Authentication.Services;
-using Ech.Executive.Models.API;
+﻿using Ech.Executive.Database;
+using Ech.Executive.Schema;
 using Ech.Executive.Services;
 using Ech.WebApi;
+using Ech.WebApi.API;
 using Microsoft.AspNetCore.Mvc;
-using RabbitMQ.Client.Core.DependencyInjection;
 using RabbitMQ.Client.Core.DependencyInjection.Services.Interfaces;
-using RabbitMQ.Client.Core.DependencyInjection.Configuration;
-using Ech.Executive.Database;
-using Ech.Executive.Authentication.Model;
-using Ech.Executive.Schema;
+using System.Net;
 
 namespace Ech.Executive.Controllers
 {
@@ -31,14 +28,19 @@ namespace Ech.Executive.Controllers
         [HttpPost(Name = "PostQuery")]
         public async Task<ActionResult<ApiQueryResponseModel<bool>>> Post([FromBody] ApiRequestModel model)
         {
-            //await _queueService.SendAsync(
-            //    @object: model,
-            //    exchangeName: "ech.exchange",
-            //    routingKey: "ech.item.sale.monitor");
-
             User user = _db.Users.FirstOrDefault<User>(item => item.id == model.userId);
 
-            return Ok(true);
+            if (user != null)
+            {
+                await _queueService.SendAsync(
+                    @object: user,
+                    exchangeName: "ech.exchange",
+                    routingKey: "ech.serv.itemsalemonitor");
+
+                return Ok(true);
+            }
+
+            return StatusCode(HttpStatusCode.BadRequest, "User not found");
         }
     }
 }

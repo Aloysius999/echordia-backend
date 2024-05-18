@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ech.Executive.Models.API
+namespace Ech.WebApi.API
 {
     public enum QueryType
     {

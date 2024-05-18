@@ -2,6 +2,7 @@
 using Ech.Executive.Authentication.Middleware;
 using Ech.Executive.Authentication.Services;
 using Ech.Executive.Database;
+using Ech.Executive.Messaging;
 using Ech.Executive.Services;
 using Ech.Executive.Settings;
 using Microsoft.EntityFrameworkCore;
@@ -61,8 +62,9 @@ try
         //});
     });
 
- 
+    //----------------------------------------
     // configure database services
+    //----------------------------------------
     var dbConfig = builder.Configuration.GetSection("DBConfiguration");
 
     builder.Services.Configure<DBConfiguration>(dbConfig);
@@ -72,21 +74,36 @@ try
 
     builder.Services.AddDbContext<MySQLDbContext>(options => options.UseMySQL(connectionString));
 
+    //----------------------------------------
+    // services
+    //----------------------------------------
     builder.Services.AddScoped<IAuthService, AuthService>();
     builder.Services.AddScoped<IUserService, UserService>();
     builder.Services.AddScoped<IExecService, ExecService>();
     builder.Services.AddScoped<ITestService, TestService>();
 
-
+    //----------------------------------------
     // configure RabbitMQ
+    //----------------------------------------
     var rabbitMqSection = builder.Configuration.GetSection("RabbitMq");
     var exchangeSection = builder.Configuration.GetSection("RabbitMqExchange");
 
+    // consumer
+    var myRabbitMqSection = builder.Configuration.GetSection("MyRabbitMq");
+    var routeKey = myRabbitMqSection.GetValue<string>("RoutingKeyReceive");
+
+    builder.Services
+        .AddRabbitMqServices(rabbitMqSection)
+        .AddConsumptionExchange("ech.exchange", exchangeSection)
+        .AddMessageHandlerSingleton<CustomMessageHandler>(routeKey);
+
+    // producer
     builder.Services.AddRabbitMqProducer(rabbitMqSection)
         .AddProductionExchange("ech.exchange", exchangeSection);
 
-
+    //----------------------------------------
     // NLog: setup NLog for dependency injection
+    //----------------------------------------
     builder.Logging.ClearProviders();
     builder.Logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Debug);
     builder.Host.UseNLog();
@@ -94,7 +111,9 @@ try
 
     var app = builder.Build();
 
+    //----------------------------------------
     // Configure the HTTP request pipeline.
+    //----------------------------------------
     if (app.Environment.IsDevelopment())
     {
         app.UseSwagger();

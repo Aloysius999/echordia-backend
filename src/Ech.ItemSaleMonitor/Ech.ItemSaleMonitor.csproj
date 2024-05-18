@@ -20,11 +20,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Ech.Config\Ech.Config.csproj" />
+    <ProjectReference Include="..\Ech.WebApi\Ech.WebApi.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Messaging\" />
-    <Folder Include="Services\" />
   </ItemGroup>
 
 </Project>

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace Ech.Executive.Models.API
+namespace Ech.WebApi.API
 {
     public class ApiQueryResponseModel<T>
     {
