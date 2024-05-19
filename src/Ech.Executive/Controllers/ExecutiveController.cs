@@ -28,19 +28,29 @@ namespace Ech.Executive.Controllers
         [HttpPost(Name = "PostQuery")]
         public async Task<ActionResult<ApiQueryResponseModel<bool>>> Post([FromBody] ApiRequestModel model)
         {
-            User user = _db.Users.FirstOrDefault<User>(item => item.id == model.userId);
-
-            if (user != null)
+            try
             {
-                await _queueService.SendAsync(
-                    @object: user,
-                    exchangeName: "ech.exchange",
-                    routingKey: "ech.serv.itemsalemonitor");
+                SaleControl saleControl = _db.SaleControls.FirstOrDefault<SaleControl>(item => (item.itemId == model.itemId
+                                                                                                && item.userId == model.userId));
 
-                return Ok(true);
+                User user = _db.Users.FirstOrDefault<User>(item => item.id == model.userId);
+
+                if (user != null)
+                {
+                    await _queueService.SendAsync(
+                        @object: user,
+                        exchangeName: "ech.exchange",
+                        routingKey: "ech.serv.itemsalemonitor");
+
+                    return Ok(true);
+                }
+
+                return StatusCode(HttpStatusCode.BadRequest, "User not found");
             }
-
-            return StatusCode(HttpStatusCode.BadRequest, "User not found");
+            catch(Exception ex)
+            {
+                return StatusCode(HttpStatusCode.InternalServerError, ex.Message);
+            }
         }
     }
 }

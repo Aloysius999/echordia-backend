@@ -32,7 +32,7 @@ namespace Ech.Executive.Authentication.Services
             if (user == null) 
                 throw new NotFoundException("User not found");
 
-            if (user.roleId == User.Role.User)
+            if (user.role == User.Role.User)
                 throw new ForbiddenException("User does not have sufficient privileges");
 
             // verify password hash

@@ -11,5 +11,6 @@ namespace Ech.WebApi.API
         public QueryType queryType { get; set; }
         public int id { get; set; }
         public int userId { get; set; }
+        public int itemId { get; set; }
     }
 }

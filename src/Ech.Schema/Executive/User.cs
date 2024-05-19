@@ -14,8 +14,8 @@ namespace Ech.Schema.Executive
         }
 
         public int id { get; set; }
-        public string? forename { get; set; }
-        public string? surname { get; set; }
+        //public string? forename { get; set; }
+        //public string? surname { get; set; }
         public string? alias { get; set; }
         public string? name { get; set; }
         public string? email { get; set; }
@@ -24,15 +24,9 @@ namespace Ech.Schema.Executive
         public string? hashedPassword { get; set; }
         public bool isActive { get; set; }
 
-        [NotMapped]
-        public Role roleId { get; set; }
-        public string? role
-        {
-            get => roleId.ToString();
-            set => roleId = (Role)Enum.Parse(typeof(Role), value);
-        }
+        public Role role { get; set; }
 
-        public DateTime createdAt { get; set; }
-        public DateTime updatedAt { get; set; }
+        //public DateTime createdAt { get; set; }
+        //public DateTime updatedAt { get; set; }
     }
 }
