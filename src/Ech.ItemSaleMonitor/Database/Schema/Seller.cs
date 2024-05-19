@@ -1,20 +1,18 @@
 ﻿using Ech.Schema.Executive;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Ech.Schema.IntraService.ItemSaleMonitor
 {
+    [Table("seller")]
     public class Seller : User
     {
-        public new int id { get; set; }
-
-        public int originalId 
-        { 
-            get { return base.id; } 
-            set { base.id = value; } 
-        }
+        [Key] 
+        public int sellerId { get; set; }
     }
 }

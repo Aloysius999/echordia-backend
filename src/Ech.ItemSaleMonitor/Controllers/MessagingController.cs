@@ -1,5 +1,7 @@
 ﻿using Ech.ItemSaleMonitor.Database;
 using Ech.ItemSaleMonitor.Services;
+using Ech.Schema.Executive;
+using Ech.Schema.IntraService.ItemSaleMonitor;
 using Ech.WebApi;
 using Ech.WebApi.API;
 using Microsoft.AspNetCore.Mvc;
@@ -27,10 +29,12 @@ namespace Ech.ItemSaleMonitor.Controllers
         [HttpPost(Name = "PostQuery")]
         public async Task<ActionResult<ApiQueryResponseModel<bool>>> Post([FromBody] ApiRequestModel model)
         {
-            await _queueService.SendAsync(
-                @object: "hello world",
-                exchangeName: "ech.exchange",
-                routingKey: "ech.executive");
+            ItemSaleControl saleControl = _db.ItemSaleControls.FirstOrDefault<ItemSaleControl>(item => item.itemId == 1);
+
+            //await _queueService.SendAsync(
+            //    @object: "hello world",
+            //    exchangeName: "ech.exchange",
+            //    routingKey: "ech.executive");
 
             return Ok(true);        }
     }
