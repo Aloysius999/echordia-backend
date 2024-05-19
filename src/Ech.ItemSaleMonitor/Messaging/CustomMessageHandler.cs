@@ -61,33 +61,98 @@ namespace Ech.ItemSaleMonitor.Messaging
 
         private void HandleNewQuery(ItemSaleMonitorQuery query)
         {
-            using (var scope = _serviceProvider.CreateScope())
+            try
             {
-                var db = scope.ServiceProvider.GetRequiredService<MySQLDbContext>();
-
-                ItemSaleControl itemFound = db.ItemSaleControls.FirstOrDefault<ItemSaleControl>(item => item.itemId == query.SaleControl.itemId &&
-                                                                                                            item.userId == query.SaleControl.userId);
-
-                if (itemFound == null)
+                using (var scope = _serviceProvider.CreateScope())
                 {
-                    // not found - new entity
-                    ItemSaleControl item = Mapping.Map(query.SaleControl);
+                    var db = scope.ServiceProvider.GetRequiredService<MySQLDbContext>();
 
-                    db.ItemSaleControls.Add(item);
+                    ItemSaleControl itemFound = db.ItemSaleControls.FirstOrDefault<ItemSaleControl>(item => item.itemId == query.SaleControl.itemId &&
+                                                                                                                item.userId == query.SaleControl.userId);
 
-                    db.SaveChanges();
+                    if (itemFound == null)
+                    {
+                        // not found - new entity
+                        ItemSaleControl item = Mapping.Map(query.SaleControl);
+
+                        db.ItemSaleControls.Add(item);
+
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        _logger.LogDebug(string.Format("HandleNewQuery - Item already exists - userId={0} itemId={1}", query.SaleControl.userId, query.SaleControl.itemId));
+                    }
                 }
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
             }
         }
 
         private void HandleUpdateQuery(ItemSaleMonitorQuery query)
         {
+            try
+            {
+                using (var scope = _serviceProvider.CreateScope())
+                {
+                    var db = scope.ServiceProvider.GetRequiredService<MySQLDbContext>();
 
+                    ItemSaleControl itemFound = db.ItemSaleControls.FirstOrDefault<ItemSaleControl>(item => item.itemId == query.SaleControl.itemId &&
+                                                                                                                item.userId == query.SaleControl.userId);
+
+                    if (itemFound != null)
+                    {
+                        // found - update entity
+                        ItemSaleControl item = Mapping.Map(query.SaleControl);
+
+                        item.saleControlId = itemFound.saleControlId;
+
+                        db.ItemSaleControls.Update(item);
+
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        _logger.LogDebug(string.Format("HandleUpdateQuery - Item not found - userId={0} itemId={1}", query.SaleControl.userId, query.SaleControl.itemId));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+            }
         }
 
         private void HandleDeleteQuery(ItemSaleMonitorQuery query)
         {
+            try
+            {
+                using (var scope = _serviceProvider.CreateScope())
+                {
+                    var db = scope.ServiceProvider.GetRequiredService<MySQLDbContext>();
 
+                    ItemSaleControl itemFound = db.ItemSaleControls.FirstOrDefault<ItemSaleControl>(item => item.itemId == query.SaleControl.itemId &&
+                                                                                                                item.userId == query.SaleControl.userId);
+
+                    if (itemFound != null)
+                    {
+                        // found - delete entity
+                        db.ItemSaleControls.Remove(itemFound);
+
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        _logger.LogDebug(string.Format("HandleDeleteQuery - Item not found - userId={0} itemId={1}", query.SaleControl.userId, query.SaleControl.itemId));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+            }
         }
     }
 }
