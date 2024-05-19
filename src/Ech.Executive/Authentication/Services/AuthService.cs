@@ -2,8 +2,8 @@
 using Ech.Common.Crypto;
 using Ech.Executive.Authentication.Model;
 using Ech.Executive.Database;
-using Ech.Executive.Schema;
 using Ech.Executive.Settings;
+using Ech.Schema.Executive;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;

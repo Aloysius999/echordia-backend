@@ -1,4 +1,4 @@
-﻿using Ech.Executive.Schema;
+﻿using Ech.Schema.Executive;
 
 namespace Ech.Executive.Authentication.Model
 {

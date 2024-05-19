@@ -1,6 +1,5 @@
-﻿using Ech.Executive.Authentication.Model;
+﻿using Ech.Schema.Executive;
 using Microsoft.EntityFrameworkCore;
-using Ech.Executive.Schema;
 
 namespace Ech.Executive.Database
 {

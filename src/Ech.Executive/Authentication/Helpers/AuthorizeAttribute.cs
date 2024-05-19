@@ -1,4 +1,4 @@
-﻿using Ech.Executive.Schema;
+﻿using Ech.Schema.Executive;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 

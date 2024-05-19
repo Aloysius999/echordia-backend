@@ -1,5 +1,5 @@
 ﻿using Ech.Executive.Authentication.Model;
-using Ech.Executive.Schema;
+using Ech.Schema.Executive;
 using Newtonsoft.Json;
 
 namespace Ech.Executive.Authentication.Services
