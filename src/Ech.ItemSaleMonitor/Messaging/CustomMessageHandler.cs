@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Ech.Queries.IntraService;
+using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using RabbitMQ.Client.Core.DependencyInjection.MessageHandlers;
 using RabbitMQ.Client.Core.DependencyInjection.Models;
 using RabbitMQ.Client.Events;
@@ -33,6 +35,8 @@ namespace Ech.ItemSaleMonitor.Messaging
             Console.WriteLine("CustomMessageHandler - Handle - payload", payload);
 
             _logger.LogDebug("Handle - payload", payload);
+
+            ItemSaleMonitorQuery query = JsonConvert.DeserializeObject<ItemSaleMonitorQuery>(payload);
         }
     }
 }

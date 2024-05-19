@@ -9,5 +9,6 @@ namespace Ech.WebApi.API
     public enum QueryType
     {
         ListingItem = 0,
+        SaleControl,
     }
 }
