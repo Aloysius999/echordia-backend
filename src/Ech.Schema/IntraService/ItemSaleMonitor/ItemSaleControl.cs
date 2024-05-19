@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace Ech.Schema.IntraService.ItemSaleMonitor
 {
-    public class Seller : User
+    public class ItemSaleControl : SaleControl
     {
         public new int id { get; set; }
 
-        public int originalId 
-        { 
-            get { return base.id; } 
-            set { base.id = value; } 
+        public int originalId
+        {
+            get { return base.id; }
+            set { base.id = value; }
         }
     }
 }

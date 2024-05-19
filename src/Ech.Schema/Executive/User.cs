@@ -3,7 +3,6 @@ using System.Text.Json.Serialization;
 
 namespace Ech.Schema.Executive
 {
-
     public class User
     {
         public enum Role
@@ -32,5 +31,8 @@ namespace Ech.Schema.Executive
             get => roleId.ToString();
             set => roleId = (Role)Enum.Parse(typeof(Role), value);
         }
+
+        public DateTime createdAt { get; set; }
+        public DateTime updatedAt { get; set; }
     }
 }
